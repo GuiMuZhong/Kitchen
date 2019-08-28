@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.AssetSteward.dao.UserDao">
+    <!-- 目的：为dao接口方法提供sql语句配置 -->
+
+    <insert id="addUser">
+        INSERT INTO
+            user(user_name, user_password, user_email, user_type)
+        VALUES
+            (#{userName}, #{userPassword}, #{userEmail}, #{userType})
+    </insert>
+
+    <select id="deleteUser" resultType="int">
+        DELETE
+        FROM user
+        WHERE user_email = #{userEmail}
+    </select>
+
+    <select id="updateUser" resultType="String">
+        UPDATE USER
+        SET user_name = #{userName}, user_password = #{userPassword}, user_type = #{userType}
+        WHERE user_email = #{userEmail}
+    </select>
+
+    <select id="getUser" resultType="User">
+        SELECT user_id, user_name, uesr_password, user_email, user_type
+        FROM user
+        WHERE user_email = #{userEmail}
+    </select>
+
+</mapper>
