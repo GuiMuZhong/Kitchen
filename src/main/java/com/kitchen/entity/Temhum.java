@@ -12,13 +12,6 @@ public class Temhum {
 
     private double humidity;
 
-    public Temhum(int houseId, Date recordTime, double temperature, double humidity) {
-        this.houseId = houseId;
-        this.recordTime = recordTime;
-        this.temperature = temperature;
-        this.humidity = humidity;
-    }
-
     public int getHouseId() {
         return houseId;
     }

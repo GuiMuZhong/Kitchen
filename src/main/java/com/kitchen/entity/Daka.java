@@ -8,11 +8,6 @@ public class Daka {
 
     private Date recordTime;
 
-    public Daka(int userId, Date recordTime) {
-        this.userId = userId;
-        this.recordTime = recordTime;
-    }
-
     public int getUserId() {
         return userId;
     }

@@ -12,14 +12,6 @@ public class House {
 
     private String houseNumber;
 
-    public House(int houseId, String houseName, int houseMaster, double houseArea, String houseNumber) {
-        this.houseId = houseId;
-        this.houseName = houseName;
-        this.houseMaster = houseMaster;
-        this.houseArea = houseArea;
-        this.houseNumber = houseNumber;
-    }
-
     public int getHouseId() {
         return houseId;
     }

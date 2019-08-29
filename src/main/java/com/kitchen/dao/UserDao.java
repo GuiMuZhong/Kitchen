@@ -13,7 +13,7 @@ public interface UserDao {
 
     boolean updateUser(@Param("userName")String userName, @Param("userPassword")String userPassword, @Param("userEmail")String userEmail, @Param("userType")byte userType);
 
-    User getUser(String userEmail);
+    User getUser(@Param("userEmail") String userEmail);
 
     List<User> getUserTypeList(byte userType);
 

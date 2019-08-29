@@ -12,14 +12,6 @@ public class User {
 
     private byte userType;
 
-    public User(int userId, String userName, String userPassword, String userEmail, byte userType) {
-        this.userId = userId;
-        this.userName = userName;
-        this.userPassword = userPassword;
-        this.userEmail = userEmail;
-        this.userType = userType;
-    }
-
     public int getUserId() {
         return userId;
     }
