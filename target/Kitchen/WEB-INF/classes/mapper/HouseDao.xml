@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kitchen.dao.HouseDao">
+    <!-- 目的：为dao接口方法提供sql语句配置 -->
+
+    <insert id="addHouse">
+        INSERT INTO
+            house(house_name, house_master, house_area, house_number)
+        VALUES
+            (#{houseName}, #{houseMaster}, #{houseArea}, #{houseNumber})
+    </insert>
+
+    <delete id="deleteHouse">
+        DELETE
+        FROM house
+        WHERE house_id = #{houseId}
+    </delete>
+    
+    <update id="updateHouse">
+        UPDATE house
+        SET house_name = #{houseName}, house_master = #{houseMaster}, house_area = #{houseArea}, house_number = #{houseNumber}
+        WHERE house_id = #{houseId}
+    </update>
+    
+    <select id="getHouseList" resultType="House">
+        SELECT house_id, house_name, house_master, house_area, house_number
+        FROM house
+    </select>
+
+</mapper>

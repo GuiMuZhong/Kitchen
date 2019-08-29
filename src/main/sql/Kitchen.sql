@@ -47,7 +47,7 @@ VALUES
 
 -- 创建温湿度记录表
 CREATE TABLE temhum(
-    `house_id` INT NOT NULL AUTO_INCREMENT COMMENT '房间ID',
+    `house_id` INT NOT NULL COMMENT '房间ID',
     `record_time` TIMESTAMP NOT NULL COMMENT '记录时间',
     `temperature` DOUBLE NOT NULL COMMENT '温度',
     `humidity` DOUBLE NOT NULL COMMENT '湿度',

@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface HouseDao  {
+public interface HouseDao {
 
     boolean addHouse(@Param("houseName") String houseName, @Param("houseMaster") int houseMaster, @Param("houseArea") double houseArea, @Param("houseNumber") String houseNumber);
 

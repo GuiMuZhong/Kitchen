@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kitchen.dao.TemhumDao">
+    <!-- 目的：为dao接口方法提供sql语句配置 -->
+
+    <insert id="addTemhum">
+        INSERT INTO
+            temhum(house_id, record_time, temperature, humidity)
+        VALUES
+            (#{houseId}, #{recordTime}, #{temperature}, #{humidity})
+    </insert>
+
+    <delete id="deleteTemhum">
+        DELETE
+        FROM temhum
+        WHERE house_id = #{houseId} AND record_time = #{recordTime}
+    </delete>
+
+    <update id="updateTemhum">
+        UPDATE temhum
+        SET temperature = #{temperature}, humidity = #{humidity}
+        WHERE house_id = #{houseId} AND record_time = #{recordTime}
+    </update>
+
+    <select id="getTemhumList" resultType="Temhum">
+        SELECT house_id, record_time, temperature, humidity
+        FROM temhum
+    </select>
+
+    <select id="getTemhumHouseList" resultType="Temhum">
+        SELECT house_id, record_time, temperature, humidity
+        FROM temhum
+        WHERE house_id = #{houseId}
+    </select>
+
+</mapper>

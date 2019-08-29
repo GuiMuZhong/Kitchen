@@ -4,6 +4,7 @@ import com.kitchen.service.DakaService;
 import com.kitchen.service.HouseService;
 import com.kitchen.service.TemhumService;
 import com.kitchen.service.UserService;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,19 +57,19 @@ public class KitchenController {
     @ResponseBody
     @RequestMapping(value = "/getUserTypeList", produces = {"application/json; charset=utf-8"})
     public String getUserTypeList(@RequestParam(value = "userType") byte userType) {
-        return new JSONObject(userService.getUserTypeList(userType)).toString();
+        return new JSONArray(userService.getUserTypeList(userType)).toString();
     }
 
     @ResponseBody
     @RequestMapping(value = "/getUserList", produces = {"application/json; charset=utf-8"})
     public String getUserList() {
-        return new JSONObject(userService.getUserList()).toString();
+        return new JSONArray(userService.getUserList()).toString();
     }
 
     @ResponseBody
     @RequestMapping(value = "/addHouse", produces = {"application/json; charset=utf-8"})
     public String addHouse(@RequestParam(value = "houseName") String houseName, @RequestParam(value = "houseMaster") int houseMaster, @RequestParam(value = "houseArea") double houseArea, @RequestParam(value = "houseNumber") String houseNumber) {
-        return new JSONObject(houseService.addHouse(houseName, houseMaster, houseArea, houseNumber)).toString();
+        return new JSONArray(houseService.addHouse(houseName, houseMaster, houseArea, houseNumber)).toString();
     }
 
     @ResponseBody
@@ -86,7 +87,7 @@ public class KitchenController {
     @ResponseBody
     @RequestMapping(value = "/getHouseList", produces = {"application/json; charset=utf-8"})
     public String getHouseList() {
-        return new JSONObject(houseService.getHouseList()).toString();
+        return new JSONArray(houseService.getHouseList()).toString();
     }
 
     @ResponseBody
@@ -110,13 +111,13 @@ public class KitchenController {
     @ResponseBody
     @RequestMapping(value = "/getTemhumList", produces = {"application/json; charset=utf-8"})
     public String getTemhumList() {
-        return new JSONObject(temhumService.getTemhumList()).toString();
+        return new JSONArray(temhumService.getTemhumList()).toString();
     }
 
     @ResponseBody
     @RequestMapping(value = "/getTemhumHouseList", produces = {"application/json; charset=utf-8"})
     public String getTemhumHouseList(@RequestParam(value = "houseId") int houseId) {
-        return new JSONObject(temhumService.getTemhumHouseList(houseId)).toString();
+        return new JSONArray(temhumService.getTemhumHouseList(houseId)).toString();
     }
 
     @ResponseBody
@@ -140,18 +141,18 @@ public class KitchenController {
     @ResponseBody
     @RequestMapping(value = "/getDakaUserList", produces = {"application/json; charset=utf-8"})
     public String getDakaUserList(@RequestParam(value = "userId") int userId) {
-        return new JSONObject(dakaService.getDakaUserList(userId)).toString();
+        return new JSONArray(dakaService.getDakaUserList(userId)).toString();
     }
 
     @ResponseBody
     @RequestMapping(value = "/getDakaDateList", produces = {"application/json; charset=utf-8"})
     public String getDakaDateList(@RequestParam(value = "recordTime") Date recordTime) {
-        return new JSONObject(dakaService.getDakaDateList(recordTime)).toString();
+        return new JSONArray(dakaService.getDakaDateList(recordTime)).toString();
     }
 
     @ResponseBody
     @RequestMapping(value = "/getDakaList", produces = {"application/json; charset=utf-8"})
-    public String getDakaList() {
+    public String JSONArray() {
         return new JSONObject(dakaService.getDakaList()).toString();
     }
 
