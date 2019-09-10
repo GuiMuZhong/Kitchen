@@ -21,7 +21,7 @@ public class UserDaoTest {
     private HouseDao houseDao;
 
     @Test
-    public void getUser() throws Exception{
+    public void getUser() {
         String userEmail = "cqw@qq.com";
         System.out.println(userEmail);
         User user= userDao.getUser(userEmail);
@@ -30,7 +30,7 @@ public class UserDaoTest {
     }
 
     @Test
-    public void getHouseList() throws Exception{
+    public void getHouseList() {
         List<House> houses = houseDao.getHouseList();
         for (House house : houses) {
             System.out.println(house);

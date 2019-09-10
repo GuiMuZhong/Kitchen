@@ -276,8 +276,8 @@ public class KitchenController {
      */
     @ResponseBody
     @RequestMapping(value = "/getDakaList", produces = {"application/json; charset=utf-8"})
-    public String JSONArray() {
-        return new JSONObject(dakaService.getDakaList()).toString();
+    public String getDakaList() {
+        return new JSONArray(dakaService.getDakaList()).toString();
     }
 
 }
