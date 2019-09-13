@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
@@ -41,7 +43,7 @@ public class KitchenController {
     @ResponseBody
     @RequestMapping(value = "/addUser", produces = {"application/json; charset=utf-8"})
     public String addUser(@RequestParam(value = "userName") String userName, @RequestParam(value = "userPassword") String userPassword, @RequestParam(value = "userEmail") String userEmail, @RequestParam(value = "userType") byte userType) {
-        return new JSONObject(userService.addUser(userName, userPassword, userEmail, userType)).toString();
+        return String.valueOf(userService.addUser(userName, userPassword, userEmail, userType));
     }
 
     /**
@@ -52,7 +54,7 @@ public class KitchenController {
     @ResponseBody
     @RequestMapping(value = "/deleteUser", produces = {"application/json; charset=utf-8"})
     public String deleteUser(@RequestParam(value = "userEmail") String userEmail) {
-        return new JSONObject(userService.deleteUser(userEmail)).toString();
+        return String.valueOf(userService.deleteUser(userEmail));
     }
 
     /**
@@ -66,7 +68,7 @@ public class KitchenController {
     @ResponseBody
     @RequestMapping(value = "/updateUser", produces = {"application/json; charset=utf-8"})
     public String updateUser(@RequestParam(value = "userName") String userName, @RequestParam(value = "userPassword") String userPassword, @RequestParam(value = "userEmail") String userEmail, @RequestParam(value = "userType") byte userType) {
-        return new JSONObject(userService.updateUser(userName, userPassword, userEmail, userType)).toString();
+        return String.valueOf(userService.updateUser(userName, userPassword, userEmail, userType));
     }
 
     /**
@@ -112,7 +114,7 @@ public class KitchenController {
     @ResponseBody
     @RequestMapping(value = "/addHouse", produces = {"application/json; charset=utf-8"})
     public String addHouse(@RequestParam(value = "houseName") String houseName, @RequestParam(value = "houseMaster") int houseMaster, @RequestParam(value = "houseArea") double houseArea, @RequestParam(value = "houseNumber") String houseNumber) {
-        return new JSONArray(houseService.addHouse(houseName, houseMaster, houseArea, houseNumber)).toString();
+        return String.valueOf(houseService.addHouse(houseName, houseMaster, houseArea, houseNumber));
     }
 
     /**
@@ -123,7 +125,7 @@ public class KitchenController {
     @ResponseBody
     @RequestMapping(value = "/deleteHouse", produces = {"application/json; charset=utf-8"})
     public String deleteHouse(@RequestParam(value = "houseId") int houseId) {
-        return new JSONObject(houseService.deleteHouse(houseId)).toString();
+        return String.valueOf(houseService.deleteHouse(houseId));
     }
 
     /**
@@ -138,7 +140,7 @@ public class KitchenController {
     @ResponseBody
     @RequestMapping(value = "/updateHouse", produces = {"application/json; charset=utf-8"})
     public String updateHouse(@RequestParam(value = "houseId") int houseId, @RequestParam(value = "houseName") String houseName, @RequestParam(value = "houseMaster") int houseMaster, @RequestParam(value = "houseArea") double houseArea, @RequestParam(value = "houseNumber") String houseNumber) {
-        return new JSONObject(houseService.updateHouse(houseId, houseName, houseMaster, houseArea, houseNumber)).toString();
+        return String.valueOf(houseService.updateHouse(houseId, houseName, houseMaster, houseArea, houseNumber));
     }
 
     /**
@@ -161,8 +163,15 @@ public class KitchenController {
      */
     @ResponseBody
     @RequestMapping(value = "/addTemhum", produces = {"application/json; charset=utf-8"})
-    public String addTemhum(@RequestParam(value = "houseId") int houseId, @RequestParam(value = "recordTime") Date recordTime, @RequestParam(value = "temperature") double temperature, @RequestParam(value = "humidity") double humidity) {
-        return new JSONObject(temhumService.addTemhum(houseId, recordTime, temperature, humidity)).toString();
+    public String addTemhum(@RequestParam(value = "houseId") int houseId, @RequestParam(value = "recordTime") String recordTime, @RequestParam(value = "temperature") double temperature, @RequestParam(value = "humidity") double humidity) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date rtime = null;
+        try {
+            rtime = sdf.parse(recordTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return String.valueOf(temhumService.addTemhum(houseId, rtime, temperature, humidity));
     }
 
     /**
@@ -173,8 +182,15 @@ public class KitchenController {
      */
     @ResponseBody
     @RequestMapping(value = "/deleteTemhum", produces = {"application/json; charset=utf-8"})
-    public String deleteTemhum(@RequestParam(value = "houseId") int houseId, @RequestParam(value = "recordTime") Date recordTime) {
-        return new JSONObject(temhumService.deleteTemhum(houseId, recordTime)).toString();
+    public String deleteTemhum(@RequestParam(value = "houseId") int houseId, @RequestParam(value = "recordTime") String recordTime) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date rtime = null;
+        try {
+            rtime = sdf.parse(recordTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return String.valueOf(temhumService.deleteTemhum(houseId, rtime));
     }
 
     /**
@@ -187,8 +203,15 @@ public class KitchenController {
      */
     @ResponseBody
     @RequestMapping(value = "/updateTemhum", produces = {"application/json; charset=utf-8"})
-    public String updateTemhum(@RequestParam(value = "houseId") int houseId, @RequestParam(value = "recordTime") Date recordTime, @RequestParam(value = "temperature") double temperature, @RequestParam(value = "humidity") double humidity) {
-        return new JSONObject(temhumService.updateTemhum(houseId, recordTime, temperature, humidity)).toString();
+    public String updateTemhum(@RequestParam(value = "houseId") int houseId, @RequestParam(value = "recordTime") String recordTime, @RequestParam(value = "temperature") double temperature, @RequestParam(value = "humidity") double humidity) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date rtime = null;
+        try {
+            rtime = sdf.parse(recordTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return String.valueOf(temhumService.updateTemhum(houseId, rtime, temperature, humidity));
     }
 
     /**
@@ -220,8 +243,15 @@ public class KitchenController {
      */
     @ResponseBody
     @RequestMapping(value = "/addDaka", produces = {"application/json; charset=utf-8"})
-    public String addDaka(@RequestParam(value = "userId") int userId, @RequestParam(value = "recordTime") Date recordTime) {
-        return new JSONObject(dakaService.addDaka(userId, recordTime)).toString();
+    public String addDaka(@RequestParam(value = "userId") int userId, @RequestParam(value = "recordTime") String recordTime) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date rtime = null;
+        try {
+            rtime = sdf.parse(recordTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return String.valueOf(dakaService.addDaka(userId, rtime));
     }
 
     /**
@@ -232,8 +262,15 @@ public class KitchenController {
      */
     @ResponseBody
     @RequestMapping(value = "/deleteDaka", produces = {"application/json; charset=utf-8"})
-    public String deleteDaka(@RequestParam(value = "userId") int userId, @RequestParam(value = "recordTime") Date recordTime) {
-        return new JSONObject(dakaService.deleteDaka(userId, recordTime)).toString();
+    public String deleteDaka(@RequestParam(value = "userId") int userId, @RequestParam(value = "recordTime") String recordTime) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date rtime = null;
+        try {
+            rtime = sdf.parse(recordTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return String.valueOf(dakaService.deleteDaka(userId, rtime));
     }
 
     /**
@@ -244,8 +281,15 @@ public class KitchenController {
      */
     @ResponseBody
     @RequestMapping(value = "/updateDaka", produces = {"application/json; charset=utf-8"})
-    public String updateDaka(@RequestParam(value = "userId") int userId, @RequestParam(value = "recordTime") Date recordTime) {
-        return new JSONObject(dakaService.updateDaka(userId, recordTime)).toString();
+    public String updateDaka(@RequestParam(value = "userId") int userId, @RequestParam(value = "recordTime") String recordTime) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date rtime = null;
+        try {
+            rtime = sdf.parse(recordTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return String.valueOf(dakaService.updateDaka(userId, rtime));
     }
 
     /**
@@ -266,8 +310,15 @@ public class KitchenController {
      */
     @ResponseBody
     @RequestMapping(value = "/getDakaDateList", produces = {"application/json; charset=utf-8"})
-    public String getDakaDateList(@RequestParam(value = "recordTime") Date recordTime) {
-        return new JSONArray(dakaService.getDakaDateList(recordTime)).toString();
+    public String getDakaDateList(@RequestParam(value = "recordTime") String recordTime) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date rtime = null;
+        try {
+            rtime = sdf.parse(recordTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return new JSONArray(dakaService.getDakaDateList(rtime)).toString();
     }
 
     /**
