@@ -238,23 +238,15 @@ public class KitchenController {
     /**
      * 添加打卡记录
      * @param kaId
-     * @param recordTime
      * @return boolean
      */
     @ResponseBody
     @RequestMapping(value = "/addDaka", produces = {"application/json; charset=utf-8"})
-    public String addDaka(@RequestParam(value = "kaId") String kaId, @RequestParam(value = "recordTime") String recordTime) {
+    public String addDaka(@RequestParam(value = "kaId") String kaId) {
         int userId = 1;
         if(kaId.equals("b542be50")) userId = 2;
         else if(kaId.equals("60b57aOe")) userId = 3;
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date rtime = null;
-        try {
-            rtime = sdf.parse(recordTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        Date rtime = new Date();
         return String.valueOf(dakaService.addDaka(userId, rtime));
     }
 
